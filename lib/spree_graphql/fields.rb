@@ -1,0 +1,5 @@
+require 'graphql'
+require_relative 'resolvers'
+require_relative 'types'
+require_relative 'fields/products_field'
+require_relative 'fields/product_field'

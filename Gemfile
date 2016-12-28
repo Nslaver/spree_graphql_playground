@@ -5,3 +5,5 @@ source "https://rubygems.org"
 
 gem "graphql"
 gem "em-http-request"
+gem "pry"
+gem "rest-client"

@@ -1,0 +1,6 @@
+require 'graphql'
+require_relative 'resolvers'
+require_relative 'types/product_type'
+require_relative 'types/variant_type'
+require_relative 'types/id_or_slug_type'
+require_relative 'types/user_type'
