@@ -2,7 +2,7 @@ ProductField = GraphQL::Field.define do
   name          "product"
   description   "Single Product"
 
-  argument :find_by, types.ID, default_value: nil
+  argument :id, !types.ID
 
   type ProductType
 

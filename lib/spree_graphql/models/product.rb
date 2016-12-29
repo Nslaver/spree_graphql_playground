@@ -1,5 +1,10 @@
 class SpreeProduct
 
+  def self.find_all_by_taxon(taxon, token)
+    products = JSON.parse SpreeTaxonAPI.new(token).products taxon.id
+    products["products"].collect { |product_hash| make_product product_hash }
+  end
+
   def self.find_all(ids, token)
     ids.collect { |id| find(id, token) }
   end

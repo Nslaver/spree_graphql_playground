@@ -1,4 +1,5 @@
 require_relative 'variant_type'
+require_relative 'classification_type'
 
 ProductType = GraphQL::ObjectType.define do
   name "Product"
@@ -13,4 +14,8 @@ ProductType = GraphQL::ObjectType.define do
   field :variants,    types[VariantType] do
     resolve VariantResolver::ByProduct
   end
+  field :classification, types[ClassificationType] do
+    resolve ClassificationResolver::ByProduct
+  end
+
 end

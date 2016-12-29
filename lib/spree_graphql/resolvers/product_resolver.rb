@@ -8,9 +8,15 @@ class ProductResolver
     end
   end
 
+  class ByTaxon
+    def self.call(taxon, args, ctx)
+      SpreeProduct.find_all_by_taxon(taxon, ctx[:token])
+    end
+  end
+
   class One
     def self.call(obj, args, ctx)
-      SpreeProduct.find(args[:find_by], ctx[:token])
+      SpreeProduct.find(args[:id], ctx[:token])
     end
   end
 

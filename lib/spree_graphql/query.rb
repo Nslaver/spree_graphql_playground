@@ -8,4 +8,5 @@ QueryType = GraphQL::ObjectType.define do
   field :products, ProductsField
   field :product,  ProductField
   field :user,     UserField
+  field :taxons,   TaxonsField
 end

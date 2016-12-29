@@ -28,3 +28,4 @@ end
 require_relative 'api/product'
 require_relative 'api/user'
 require_relative 'api/order'
+require_relative 'api/taxon'
