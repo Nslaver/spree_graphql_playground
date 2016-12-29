@@ -1,13 +1,19 @@
 module VariantResolver
   class ByProduct
     def self.call(product, args, ctx)
-      product.variants.collect { |variant| OpenStruct.new(variant) }
+      product.variants.collect do |variant|
+        variant_struct = OpenStruct.new(variant)
+        variant_struct.product_id = product.id
+        variant_struct
+      end
     end
   end
 
   class ProductMaster
     def self.call(product, args, ctx)
-      OpenStruct.new(product.master)
+      master = OpenStruct.new(product.master)
+      master.product_id = product.id
+      master
     end
   end
 
