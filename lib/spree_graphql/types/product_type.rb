@@ -1,7 +1,7 @@
 require_relative 'variant_type'
 
 ProductType = GraphQL::ObjectType.define do
-  name "Products"
+  name "Product"
 
   field :id,          !types.ID
   field :name,        !types.String

@@ -1,7 +1,7 @@
 require_relative 'variant_type'
 
 LineItemType = GraphQL::ObjectType.define do
-  name "LineItems"
+  name "LineItem"
 
   field :id, !types.ID
 

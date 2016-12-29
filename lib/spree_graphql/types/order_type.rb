@@ -1,7 +1,7 @@
 require_relative 'line_item_type'
 
 OrderType = GraphQL::ObjectType.define do
-  name "Orders"
+  name "Order"
 
   field :id, !types.ID
 

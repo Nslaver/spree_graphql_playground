@@ -1,7 +1,7 @@
 require_relative 'product_type'
 
 VariantType = GraphQL::ObjectType.define do
-  name "Variants"
+  name "Variant"
   field :id,     !types.ID
   field :sku,    !types.String
   field :name,   !types.String
