@@ -6,7 +6,7 @@ UserType = GraphQL::ObjectType.define do
   field :id,    !types.ID
   field :email, !types.String
 
-  field :orders, !types[OrderType] do
+  field :orders, types[OrderType] do
     resolve OrderResolver::ByUser
   end
 

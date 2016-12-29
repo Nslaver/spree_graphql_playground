@@ -6,6 +6,6 @@ OrderType = GraphQL::ObjectType.define do
   field :id, !types.ID
 
   field :line_items, !types[LineItemType] do
-    resolver LineItemResolver::ByOrder
+    resolve LineItemResolver::ByOrder
   end
 end

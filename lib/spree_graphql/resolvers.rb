@@ -1,2 +1,5 @@
-require_relative 'resolvers/product_resolver.rb'
-require_relative 'resolvers/variant_resolver.rb'
+require_relative "resolvers/line_item_resolver"
+require_relative "resolvers/order_resolver"
+require_relative "resolvers/product_resolver"
+require_relative "resolvers/user_resolver"
+require_relative "resolvers/variant_resolver"

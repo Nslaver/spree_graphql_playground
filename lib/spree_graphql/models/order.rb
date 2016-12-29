@@ -15,8 +15,12 @@ class SpreeOrder
   end
 
   def self.all_by_user(user, token)
-    order = JSON.parse SpreeOrderAPI.new(token).index params: { q: {user_id_eq: user.id } }
-    order["orders"].collect { |order_hash| make_order order_hash }
+    begin
+      orders = JSON.parse SpreeOrderAPI.new(token).index params: { q: {user_id_eq: user.id } }
+    rescue RestClient::Unauthorized
+      orders = JSON.parse SpreeOrderAPI.new(token).mine
+    end
+    orders["orders"].collect { |order_hash| make_order order_hash }
   end
 
   def self.make_order(order_hash)

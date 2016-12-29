@@ -6,6 +6,6 @@ LineItemType = GraphQL::ObjectType.define do
   field :id, !types.ID
 
   field :variant, !VariantType do
-    resolver VariantResolver::ByLineItem
+    resolve VariantResolver::ByLineItem
   end
 end
