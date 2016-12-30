@@ -3,7 +3,7 @@ require 'pp'
 
 query1 = <<-GRAPHQL
 {
-  product_with_id: product(find_by: 3) {
+  product_with_id: product(id: 3) {
     id
     name
     master {
@@ -54,11 +54,11 @@ GRAPHQL
 
 query_with_fragment = <<-GRAPHQL
 query getProducts {
-  product_1: product(find_by: 1) {
+  product_1: product(id: 1) {
     ... productDetails
   }
 
-  product_2: product(find_by: 2) {
+  product_2: product(id: 2) {
     ... productDetails
   }
 }
@@ -89,7 +89,7 @@ GRAPHQL
 # Can be a huge hit on DB!!
 products_by_taxon_example = <<-GRAPHQL
 {
-  products_with_taxon_3_4_and_6: taxons(ids: [3, 4, 6]) {
+  products: taxons {
     name
     id
     products {
@@ -112,18 +112,53 @@ products_by_taxon_example = <<-GRAPHQL
 }
 GRAPHQL
 
+all_products = <<-GRAPHQL
+{
+  products {
+    name
+    classification {
+      taxon {
+        pretty_name
+        name
+      }
+    }
+  }
+}
+GRAPHQL
+
+partial = <<-GRAPHQL
+{
+  t1: taxons(page: 1, per_page: 1) {
+    name
+    products {
+      name
+      master {
+        sku
+      }
+      variants {
+        name
+      }
+    }
+  }
+  taxon_list: taxons {
+    id
+    name
+  }
+}
+GRAPHQL
+
 # puts "Introspection Result"
 # pp SpreeSchema.execute(GraphQL::Introspection::INTROSPECTION_QUERY)
 
 admin_token = '49b9a05392f74da503346207a6ce157482e6be92db444726'
-regular_token = 'df1cec4a3531bf1f26c4bf27f087045ea3055b9497e50341'
-puts "Running Query 1"
-pp SpreeSchema.execute(query1, context: { token: regular_token })
-puts "Running Query 2"
-pp SpreeSchema.execute(query2, context: { token: regular_token })
-puts "Running Query with fragments"
-pp SpreeSchema.execute(query_with_fragment, context: { token: regular_token })
-puts "Running Product with taxon"
-pp SpreeSchema.execute(product_taxon_example, context: { token: regular_token })
-puts "Fetching products by taxon ids"
+regular_token = '1ace9f313ace13c8d86a80819f4b65ed117865116ff55ff3'
+# puts "Running Query 1"
+# pp SpreeSchema.execute(query1, context: { token: regular_token })
+# puts "Running Query 2"
+# pp SpreeSchema.execute(query2, context: { token: regular_token })
+# puts "Running Query with fragments"
 pp SpreeSchema.execute(products_by_taxon_example, context: { token: regular_token })
+# puts "Running Product with taxon"
+# pp SpreeSchema.execute(partial, context: { token: regular_token })
+# puts "Fetching products by taxon ids"
+# pp SpreeSchema.execute(query_with_fragment, context: { token: regular_token })

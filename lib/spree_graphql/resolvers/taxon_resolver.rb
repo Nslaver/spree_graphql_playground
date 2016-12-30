@@ -1,7 +1,7 @@
 module TaxonResolver
   class All
     def self.call(obj, args, ctx)
-      SpreeTaxon.find_all(args[:ids], ctx[:token])
+      SpreeTaxon.find_all(args, ctx[:token])
     end
   end
 
